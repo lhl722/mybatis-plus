@@ -15,8 +15,6 @@
  */
 package com.baomidou.mybatisplus.generator.config;
 
-import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
-
 /**
  * <p>
  * 模板路径配置项
