@@ -55,6 +55,11 @@ public class PackageConfig {
      * Service Impl包名
      */
     private String serviceImpl = "service.impl";
+
+    /**
+     * 简化Service包名
+     */
+    private String simpleService = "service";
     /**
      * Mapper包名
      */

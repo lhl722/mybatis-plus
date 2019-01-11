@@ -96,9 +96,14 @@ public class GlobalConfig {
     private String xmlName;
     private String serviceName;
     private String serviceImplName;
+    private String simpleServiceName;
     private String controllerName;
     /**
      * 指定生成的主键的ID类型
      */
     private IdType idType;
+    /**
+     * 是否为简化的Service，直接实现逻辑，没有接口继承，去掉冗余
+     */
+    private boolean isSimpleService = false;
 }

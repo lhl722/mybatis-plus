@@ -116,20 +116,33 @@ public abstract class AbstractTemplateEngine {
                         writer(objectMap, templateFilePath(template.getXml()), xmlFile);
                     }
                 }
-                // IMpService.java
-                if (null != tableInfo.getServiceName() && null != pathInfo.get(ConstVal.SERVICE_PATH)) {
-                    String serviceFile = String.format((pathInfo.get(ConstVal.SERVICE_PATH) + File.separator + tableInfo.getServiceName() + suffixJavaOrKt()), entityName);
-                    if (isCreate(FileType.SERVICE, serviceFile)) {
-                        writer(objectMap, templateFilePath(template.getService()), serviceFile);
+                if(getConfigBuilder().getGlobalConfig().isSimpleService()) {
+                    // IMpSimpleService.java
+                    if (null != tableInfo.getSimpleServiceName() && null != pathInfo.get(ConstVal.SIMPLE_SERVICE_PATH)) {
+                        String simpleServiceFile = String.format((pathInfo.get(ConstVal.SIMPLE_SERVICE_PATH) + File.separator + tableInfo.getSimpleServiceName() + suffixJavaOrKt()), entityName);
+                        if (isCreate(FileType.SIMPLE_SERVICE, simpleServiceFile)) {
+                            writer(objectMap, templateFilePath(template.getSimpleService()), simpleServiceFile);
+                        }
+                    }
+                } else {
+                    // IMpService.java
+                    if (null != tableInfo.getServiceName() && null != pathInfo.get(ConstVal.SERVICE_PATH)) {
+                        String serviceFile = String.format((pathInfo.get(ConstVal.SERVICE_PATH) + File.separator + tableInfo.getServiceName() + suffixJavaOrKt()), entityName);
+                        if (isCreate(FileType.SERVICE, serviceFile)) {
+                            writer(objectMap, templateFilePath(template.getService()), serviceFile);
+                        }
+                    }
+
+                    // MpServiceImpl.java
+                    if (null != tableInfo.getServiceImplName() && null != pathInfo.get(ConstVal.SERVICE_IMPL_PATH)) {
+                        String implFile = String.format((pathInfo.get(ConstVal.SERVICE_IMPL_PATH) + File.separator + tableInfo.getServiceImplName() + suffixJavaOrKt()), entityName);
+                        if (isCreate(FileType.SERVICE_IMPL, implFile)) {
+                            writer(objectMap, templateFilePath(template.getServiceImpl()), implFile);
+                        }
                     }
                 }
-                // MpServiceImpl.java
-                if (null != tableInfo.getServiceImplName() && null != pathInfo.get(ConstVal.SERVICE_IMPL_PATH)) {
-                    String implFile = String.format((pathInfo.get(ConstVal.SERVICE_IMPL_PATH) + File.separator + tableInfo.getServiceImplName() + suffixJavaOrKt()), entityName);
-                    if (isCreate(FileType.SERVICE_IMPL, implFile)) {
-                        writer(objectMap, templateFilePath(template.getServiceImpl()), implFile);
-                    }
-                }
+
+
                 // MpController.java
                 if (null != tableInfo.getControllerName() && null != pathInfo.get(ConstVal.CONTROLLER_PATH)) {
                     String controllerFile = String.format((pathInfo.get(ConstVal.CONTROLLER_PATH) + File.separator + tableInfo.getControllerName() + suffixJavaOrKt()), entityName);

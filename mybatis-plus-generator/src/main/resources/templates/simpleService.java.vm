@@ -1,0 +1,25 @@
+package ${package.simpleService};
+
+import ${package.Entity}.${entity};
+import ${package.Mapper}.${table.mapperName};
+import ${superServiceImplClassPackage};
+import org.springframework.stereotype.Service;
+
+/**
+ * <p>
+ * $!{table.comment} 服务简化类
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+@Service
+#if(${kotlin})
+open class ${table.simpleServiceName} : ${superServiceImplClass}<${table.mapperName}, ${entity}>() {
+
+}
+#else
+public class ${table.simpleServiceName} extends ${superServiceImplClass}<${table.mapperName}, ${entity}> {
+
+}
+#end

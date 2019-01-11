@@ -48,6 +48,7 @@ public class TableInfo {
     private String xmlName;
     private String serviceName;
     private String serviceImplName;
+    private String simpleServiceName;
     private String controllerName;
     private List<TableField> fields;
     /**
@@ -92,7 +93,63 @@ public class TableInfo {
         return this;
     }
 
-    public TableInfo setFields(List<TableField> fields) {
+    public String getMapperName() {
+        return mapperName;
+    }
+
+    public void setMapperName(String mapperName) {
+        this.mapperName = mapperName;
+    }
+
+    public String getXmlName() {
+        return xmlName;
+    }
+
+    public void setXmlName(String xmlName) {
+        this.xmlName = xmlName;
+    }
+
+    public String getServiceName() {
+        return serviceName;
+    }
+
+    public void setServiceName(String serviceName) {
+        this.serviceName = serviceName;
+    }
+
+    public String getServiceImplName() {
+        return serviceImplName;
+    }
+
+    public void setServiceImplName(String serviceImplName) {
+        this.serviceImplName = serviceImplName;
+    }
+
+    public String getSimpleServiceName() {
+        return simpleServiceName;
+    }
+
+    public void setSimpleServiceName(String simpleServiceName) {
+        this.simpleServiceName = simpleServiceName;
+    }
+
+    public void setFieldNames(String fieldNames) {
+        this.fieldNames = fieldNames;
+    }
+
+    public String getControllerName() {
+        return controllerName;
+    }
+
+    public void setControllerName(String controllerName) {
+        this.controllerName = controllerName;
+    }
+
+    public List<TableField> getFields() {
+        return fields;
+    }
+
+    public void setFields(List<TableField> fields) {
         if (CollectionUtils.isNotEmpty(fields)) {
             this.fields = fields;
             // 收集导入包信息
@@ -120,7 +177,6 @@ public class TableInfo {
                 }
             }
         }
-        return this;
     }
 
     public TableInfo setImportPackages(String pkg) {
