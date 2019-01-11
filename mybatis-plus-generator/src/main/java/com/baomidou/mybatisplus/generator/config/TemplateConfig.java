@@ -15,6 +15,8 @@
  */
 package com.baomidou.mybatisplus.generator.config;
 
+import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
+
 /**
  * <p>
  * 模板路径配置项
@@ -32,6 +34,8 @@ public class TemplateConfig {
     private String service = ConstVal.TEMPLATE_SERVICE;
 
     private String serviceImpl = ConstVal.TEMPLATE_SERVICE_IMPL;
+
+    private String simpleService = ConstVal.TEMPLATE_SIMPLE_SERVICE;
 
     private String mapper = ConstVal.TEMPLATE_MAPPER;
 
@@ -69,6 +73,14 @@ public class TemplateConfig {
     public TemplateConfig setServiceImpl(String serviceImpl) {
         this.serviceImpl = serviceImpl;
         return this;
+    }
+
+    public String getSimpleService() {
+        return simpleService;
+    }
+
+    public void setSimpleService(String simpleService) {
+        this.simpleService = simpleService;
     }
 
     public String getMapper() {

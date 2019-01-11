@@ -250,10 +250,13 @@ public class ConfigBuilder {
         packageInfo.put(ConstVal.ENTITY, joinPackage(config.getParent(), config.getEntity()));
         packageInfo.put(ConstVal.MAPPER, joinPackage(config.getParent(), config.getMapper()));
         packageInfo.put(ConstVal.XML, joinPackage(config.getParent(), config.getXml()));
-        packageInfo.put(ConstVal.SERVICE, joinPackage(config.getParent(), config.getService()));
-        packageInfo.put(ConstVal.SERVICE_IMPL, joinPackage(config.getParent(), config.getServiceImpl()));
+        if(this.globalConfig.isSimpleService()) {
+            packageInfo.put(ConstVal.SIMPLE_SERVICE, joinPackage(config.getParent(), config.getSimpleService()));
+        } else {
+            packageInfo.put(ConstVal.SERVICE, joinPackage(config.getParent(), config.getService()));
+            packageInfo.put(ConstVal.SERVICE_IMPL, joinPackage(config.getParent(), config.getServiceImpl()));
+        }
         packageInfo.put(ConstVal.CONTROLLER, joinPackage(config.getParent(), config.getController()));
-
         // 自定义路径
         Map<String, String> configPathInfo = config.getPathInfo();
         if (null != configPathInfo) {
@@ -264,8 +267,12 @@ public class ConfigBuilder {
             setPathInfo(pathInfo, template.getEntity(getGlobalConfig().isKotlin()), outputDir, ConstVal.ENTITY_PATH, ConstVal.ENTITY);
             setPathInfo(pathInfo, template.getMapper(), outputDir, ConstVal.MAPPER_PATH, ConstVal.MAPPER);
             setPathInfo(pathInfo, template.getXml(), outputDir, ConstVal.XML_PATH, ConstVal.XML);
-            setPathInfo(pathInfo, template.getService(), outputDir, ConstVal.SERVICE_PATH, ConstVal.SERVICE);
-            setPathInfo(pathInfo, template.getServiceImpl(), outputDir, ConstVal.SERVICE_IMPL_PATH, ConstVal.SERVICE_IMPL);
+            if(this.globalConfig.isSimpleService()) {
+                setPathInfo(pathInfo, template.getSimpleService(), outputDir, ConstVal.SIMPLE_SERVICE_PATH, ConstVal.SIMPLE_SERVICE);
+            } else {
+                setPathInfo(pathInfo, template.getService(), outputDir, ConstVal.SERVICE_PATH, ConstVal.SERVICE);
+                setPathInfo(pathInfo, template.getServiceImpl(), outputDir, ConstVal.SERVICE_IMPL_PATH, ConstVal.SERVICE_IMPL);
+            }
             setPathInfo(pathInfo, template.getController(), outputDir, ConstVal.CONTROLLER_PATH, ConstVal.CONTROLLER);
         }
     }
@@ -369,6 +376,9 @@ public class ConfigBuilder {
                 tableInfo.setServiceImplName(String.format(globalConfig.getServiceImplName(), entityName));
             } else {
                 tableInfo.setServiceImplName(entityName + ConstVal.SERVICE_IMPL);
+            }
+            if (StringUtils.isNotEmpty(globalConfig.getSimpleServiceName())) {
+                tableInfo.setSimpleServiceName(String.format(globalConfig.getSimpleServiceName(), entityName));
             }
             if (StringUtils.isNotEmpty(globalConfig.getControllerName())) {
                 tableInfo.setControllerName(String.format(globalConfig.getControllerName(), entityName));
