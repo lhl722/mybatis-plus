@@ -34,7 +34,7 @@ public interface ConstVal {
     String ENTITY = "Entity";
     String SERVICE = "Service";
     String SERVICE_IMPL = "ServiceImpl";
-    String SIMPLE_SERVICE = "simple_service";
+    String SIMPLE_SERVICE = "SimpleService";
     String MAPPER = "Mapper";
     String XML = "Xml";
     String CONTROLLER = "Controller";
